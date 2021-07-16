@@ -51,15 +51,26 @@
 
 
         $result = mysqli_query($conn, $sql);
-        echo '<table class="table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>' . $title . '</th>
-                        <th>Projects/Employees</th>
-                        <th>Actions</th>
-                    </tr>
-              </thead>';
+        echo '<table class="table">';
+        echo '<thead>';
+        echo '<tr>';
+        echo '<th>ID</th>';
+        if (!isset($_GET['path']) or $_GET['path'] == 'projects') {
+            $title1 = 'Projektai';
+        } else {
+            $title1 = 'Darbuotojai';
+        }
+        echo '<th>' . $title1 . '</th>';
+        if (!isset($_GET['path']) or $_GET['path'] == 'projects') {
+            $title1 = 'Darbuotojai';
+        } else {
+            $title1 = 'Projektai';
+        }
+        echo '<th>' . $title1 . '</th>';
+        echo '<th>Actions</th>';
+        echo '</tr>';
+        echo '</thead>';
+
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
                 if (!isset($table)) {
@@ -70,8 +81,13 @@
                     <td>{$row["$table" . "_name"]}</td>
                     <td>{$row["names"]}</td>
                     <td>
+                    <form class='form-group' action='edit.php' method='POST'>
+                        <input type='hidden' name='names_id' value='{$row["$table" . "_name"]}'>
+                        <input type='hidden' name='path' value='{$_GET['path']}'>
+                        <input type='submit' name='update' value='Update'>
+                    </form>
                     <form class='form-group' action='delete.php' method='POST'>
-                        <input type='hidden' name='name_id' value='{$row["$table" . "_id"]}'>
+                        <input type='hidden' name='names_id' value='{$row["$table" . "_id"]}'>
                         <input type='hidden' name='path' value='{$_GET['path']}'>
                         <input type='submit' name='delete' value='Delete'>
                     </form>

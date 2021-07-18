@@ -6,10 +6,23 @@ $dbname = "sprintas";
 
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 
+$fName = '';
+$id = '';
+
 if (isset($_POST['update']) and $_POST['path'] == 'employees' and $_POST['update'] == 'Update') {
 
+    $id = $_POST['names_id'];
+    $queris = "SELECT * FROM employees_projects where id='" . $_POST['names_id'] . "'";
+    $result = $conn->query($queris);
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $fName = $row['employee_name'];
+        }
+    }
+}
+
+if (isset($_POST['update']) and $_POST['path'] == 'employees' and $_POST['update'] == 'Update') {
     //Update logic needs to be done;
-    var_dump($_POST);
     $sql = "UPDATE employees_projects SET employee_name = '" . $_POST['names_name'] . "' WHERE employee_id = '" . $_POST['names_id'] . "' ";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('i', $_POST['names_id']);
@@ -28,7 +41,7 @@ if (isset($_POST['update']) and $_POST['path'] == 'employees' and $_POST['update
 
 //Project delete logic: 
 
-if (isset($_POST['delete']) and $_POST['path'] == 'projects' and $_POST['delete'] == 'Delete') {
+if (isset($_POST['update']) and $_POST['path'] == 'projects' and $_POST['update'] == 'Update') {
     $sql = 'DELETE FROM employees_projects WHERE project_id = ?';
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('i', $_POST['names_id']);

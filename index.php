@@ -9,13 +9,16 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
-<body>
-
+<body class="container">
     <header>
         <h1>Projekto valdymas</h1>
         <div>
-            <a href="?path=projects">Projektai</a>
-            <a href="?path=employees">Darbuotojai</a>
+            <button id="button">
+                <a class="button" href="?path=projects">Projektai</a>
+            </button>
+            <button id="button">
+                <a class="button" href="?path=employees">Darbuotojai</a>
+            </button>
         </div>
     </header>
     <div>

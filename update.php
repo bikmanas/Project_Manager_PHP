@@ -9,14 +9,15 @@ $conn = mysqli_connect($servername, $username, $password, $dbname);
 if (isset($_POST['update']) and $_POST['path'] == 'employees' and $_POST['update'] == 'Update') {
 
     //Update logic needs to be done;
-    $sql = 'UPDATE employees_projects SET employee_name WHERE employee_id = ?';
+    var_dump($_POST);
+    $sql = "UPDATE employees_projects SET employee_name = '" . $_POST['names_name'] . "' WHERE employee_id = '" . $_POST['names_id'] . "' ";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('i', $_POST['names_id']);
     $res = $stmt->execute();
 
-    $sql = 'UPDATE employees SET employee_id WHERE id = ?';
+    $sql = "UPDATE employees SET employee_name = '" . $_POST['names_name'] . "' WHERE id = '" . $_POST['names_id'] . "' ";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param('i', $_POST['names_name']);
+    $stmt->bind_param('i', $_POST['names_id']);
     $res = $stmt->execute();
 
     $stmt->close();

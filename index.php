@@ -85,14 +85,15 @@
                     <td>{$row["names"]}</td>
                     <td>
                     <form class='form-group' action='edit.php' method='POST'>
-                        <input type='hidden' name='names_id' value='{$row["$table" . "_name"]}'>
-                        <input type='hidden' name='path' value='{$_GET['path']}'>
-                        <input type='submit' name='update' value='Update'>
+                          <input type='hidden' name='name' value='{$row["$table" . "_name"]}'>
+                          <input type='hidden' name='id' value='{$row["$table" . "_id"]}'>
+                          <input type='hidden' name='path' value='{$_GET['path']}'>
+                          <input type='submit' name='update' value='Update'>
                     </form>
                     <form class='form-group' action='delete.php' method='POST'>
-                        <input type='hidden' name='names_id' value='{$row["$table" . "_id"]}'>
-                        <input type='hidden' name='path' value='{$_GET['path']}'>
-                        <input type='submit' name='delete' value='Delete'>
+                          <input type='hidden' name='names_id' value='{$row["$table" . "_id"]}'>
+                          <input type='hidden' name='path' value='{$_GET['path']}'>
+                          <input type='submit' name='delete' value='Delete'>
                     </form>
                     </td>
                   </tr>";
@@ -100,6 +101,11 @@
         } else {
             echo "0 results";
         }
+        echo "<form class='form-group' action='create.php' method='POST'>
+                    <input type='text' name='name'>
+                    <input type='hidden' name='path' value='{$_GET['path']}'>
+                    <input type='submit' name='create' value='Create'>
+              </form>";
         echo ("</table>");
         mysqli_close($conn);
         ?>

@@ -5,13 +5,12 @@ $password = "mysql";
 $dbname = "sprintas";
 
 $conn = mysqli_connect($servername, $username, $password, $dbname);
-
 //Update logic done: employees
 
-if (isset($_POST['update']) and $_POST['path'] == 'employees' and $_POST['update'] == 'Update') {
-    $sql = "UPDATE employees SET employee_name = ? WHERE id = ?";
+if (isset($_POST['create']) and $_POST['path'] == 'employees' and $_POST['create'] == 'Create') {
+    $sql = "INSERT into employees (employee_name) VALUES (?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param('si', $_POST['name'], $_POST['id']);
+    $stmt->bind_param('s', $_POST['name']);
     $res = $stmt->execute();
 
     $stmt->close();
@@ -22,10 +21,10 @@ if (isset($_POST['update']) and $_POST['path'] == 'employees' and $_POST['update
 
 //Update logic done: projects 
 
-if (isset($_POST['update']) and $_POST['path'] == 'projects' and $_POST['update'] == 'Update') {
-    $sql = 'UPDATE projects SET project_name = ? WHERE id = ?';
+if (isset($_POST['create']) and $_POST['path'] == 'projects' and $_POST['create'] == 'Create') {
+    $sql = "INSERT into projects (project_name) VALUES (?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param('si', $_POST['name'], $_POST['id']);
+    $stmt->bind_param('s', $_POST['name']);
     $res = $stmt->execute();
 
     $stmt->close();

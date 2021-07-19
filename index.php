@@ -6,19 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sprintas 2</title>
+    <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
 <body class="container">
     <header>
-        <h1>Projekto valdymas</h1>
-        <div>
-            <button id="button">
-                <a class="button" href="?path=projects">Projektai</a>
-            </button>
-            <button id="button">
-                <a class="button" href="?path=employees">Darbuotojai</a>
-            </button>
+        <h1 class="text-center p-2">Projekto valdymas</h1>
+        <div class="text-center">
+            <a href="?path=projects" class="btn btn-primary btn-sm">Projektai</a>
+            <a href="?path=employees" class="btn btn-primary btn-sm">Darbuotojai</a>
         </div>
     </header>
     <div>
@@ -27,7 +24,6 @@
         $username = "root";
         $password = "mysql";
         $dbname = "sprintas";
-        $title = strtoupper($_GET['path']);
         $paths = array('projects', 'employees');
         if (isset($_GET['path']) and (in_array($_GET['path'], $paths))) {
             $table = $_GET['path'];
@@ -51,7 +47,6 @@
             LEFT JOIN projects ON projects.id = employees_projects.project_id
             GROUP BY employees.id";
         }
-
 
         $result = mysqli_query($conn, $sql);
         echo '<table class="table">';
@@ -88,12 +83,12 @@
                           <input type='hidden' name='name' value='{$row["$table" . "_name"]}'>
                           <input type='hidden' name='id' value='{$row["$table" . "_id"]}'>
                           <input type='hidden' name='path' value='{$_GET['path']}'>
-                          <input type='submit' name='update' value='Update'>
+                          <input type='submit' class='btn btn-primary btn-sm' name='update' value='Update'>
                     </form>
                     <form class='form-group' action='delete.php' method='POST'>
                           <input type='hidden' name='names_id' value='{$row["$table" . "_id"]}'>
                           <input type='hidden' name='path' value='{$_GET['path']}'>
-                          <input type='submit' name='delete' value='Delete'>
+                          <input type='submit' class='btn btn-primary btn-sm' name='delete' value='Delete'>
                     </form>
                     </td>
                   </tr>";
@@ -101,10 +96,11 @@
         } else {
             echo "0 results";
         }
-        echo "<form class='form-group' action='create.php' method='POST'>
+        echo "<form action='create.php' method='POST'>
                     <input type='text' name='name'>
                     <input type='hidden' name='path' value='{$_GET['path']}'>
-                    <input type='submit' name='create' value='Create'>
+                    <input class='btn btn-primary btn-sm' type='submit' name='create' value='Create' >
+                </div>
               </form>";
         echo ("</table>");
         mysqli_close($conn);

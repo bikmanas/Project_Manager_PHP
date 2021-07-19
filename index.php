@@ -14,15 +14,15 @@
     <header>
         <?php
         if (!isset($_GET['path']) or (isset($_GET['path']) and $_GET['path'] == 'projects')) {
-            echo "<h1 class='text-center p-2'>Projekto valdymas</h1>";
+            echo "<h1 class='text-center p-2'>Project management section</h1>";
         } else {
-            echo "<h1 class='text-center p-2'>Darbuotojų valdymas</h1>";
+            echo "<h1 class='text-center p-2'>Employee management section</h1>";
         }
         ?>
 
         <div class="text-center">
-            <a href="?path=projects" class="btn btn-primary btn-sm">Projektai</a>
-            <a href="?path=employees" class="btn btn-primary btn-sm">Darbuotojai</a>
+            <a href="?path=projects" class="btn btn-primary btn-sm">Projects</a>
+            <a href="?path=employees" class="btn btn-primary btn-sm">Employees</a>
         </div>
     </header>
     <div>
@@ -61,15 +61,15 @@
         echo '<tr>';
         echo '<th>ID</th>';
         if (!isset($_GET['path']) or $_GET['path'] == 'projects') {
-            $title1 = 'Projektai';
+            $title1 = 'Projects';
         } else {
-            $title1 = 'Darbuotojai';
+            $title1 = 'Employees';
         }
         echo '<th>' . $title1 . '</th>';
         if (!isset($_GET['path']) or $_GET['path'] == 'projects') {
-            $title1 = 'Darbuotojai';
+            $title1 = 'Employees';
         } else {
-            $title1 = 'Projektai';
+            $title1 = 'Projects';
         }
         echo '<th>' . $title1 . '</th>';
         echo '<th>Actions</th>';

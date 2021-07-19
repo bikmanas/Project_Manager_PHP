@@ -21,7 +21,7 @@ if (isset($_POST['create']) and $_POST['path'] == 'employees' and $_POST['create
 
 //Update logic done: projects 
 
-if (isset($_POST['create']) and $_POST['path'] == 'projects' and $_POST['create'] == 'Create') {
+if (isset($_POST['create']) and $_POST['path'] == 'projects' or $_POST['path'] == '' and $_POST['create'] == 'Create') {
     $sql = "INSERT into projects (project_name) VALUES (?)";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('s', $_POST['name']);

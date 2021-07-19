@@ -26,7 +26,7 @@ if (isset($_POST['delete']) and $_POST['path'] == 'employees' and $_POST['delete
 
 //Project delete logic: 
 
-if (isset($_POST['delete']) and $_POST['path'] == 'projects' and $_POST['delete'] == 'Delete') {
+if (isset($_POST['delete']) and $_POST['path'] == 'projects' or $_POST['path'] == '' and $_POST['delete'] == 'Delete') {
     $sql = 'DELETE FROM employees_projects WHERE project_id = ?';
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('i', $_POST['names_id']);

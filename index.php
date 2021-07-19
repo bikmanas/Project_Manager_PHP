@@ -12,7 +12,14 @@
 
 <body class="container">
     <header>
-        <h1 class="text-center p-2">Projekto valdymas</h1>
+        <?php
+        if (!isset($_GET['path']) or (isset($_GET['path']) and $_GET['path'] == 'projects')) {
+            echo "<h1 class='text-center p-2'>Projekto valdymas</h1>";
+        } else {
+            echo "<h1 class='text-center p-2'>Darbuotojų valdymas</h1>";
+        }
+        ?>
+
         <div class="text-center">
             <a href="?path=projects" class="btn btn-primary btn-sm">Projektai</a>
             <a href="?path=employees" class="btn btn-primary btn-sm">Darbuotojai</a>

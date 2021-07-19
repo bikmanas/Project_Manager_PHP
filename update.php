@@ -22,7 +22,7 @@ if (isset($_POST['update']) and $_POST['path'] == 'employees' and $_POST['update
 
 //Update logic done: projects 
 
-if (isset($_POST['update']) and $_POST['path'] == 'projects' and $_POST['update'] == 'Update') {
+if (isset($_POST['update']) and $_POST['path'] == 'projects' or $_POST['path'] == '' and $_POST['update'] == 'Update') {
     $sql = 'UPDATE projects SET project_name = ? WHERE id = ?';
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('si', $_POST['name'], $_POST['id']);
